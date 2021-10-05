@@ -20,7 +20,6 @@ def get_data_from_DB(raw_data_from_DB_path):
 def clean_data(raw_data_from_DB_path,accident_table_path,list_nafill):
     accident_table=pd.read_csv(raw_data_from_DB_path)
     accident_table.drop(['Title','Sub Industry','Company Name','Number of Punished','Financial Penalty'], axis=1, inplace=True)
-    accident_table["City"] =accident_table["City"].replace(",","'")
     accident_table['Date']=pd.to_datetime(accident_table['Date'])
     for i in list_nafill :
         accident_table[i].fillna("Unknow", inplace = True)
