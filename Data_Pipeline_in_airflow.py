@@ -18,13 +18,14 @@ def get_data_from_DB(raw_data_from_DB_path):
     print(f"Output to {raw_data_from_DB_path}")
 
 
-def clean_data(accident_table_path,list_nafill):
-    accident_table=pd.read_csv(accident_table_path)
+def clean_data(raw_data_from_DB_path,accident_table_path,list_nafill):
+    accident_table=pd.read_csv(raw_data_from_DB_path)
     accident_table.drop(['Title','Sub Industry','Company Name','Number of Punished','Financial Penalty'], axis=1, inplace=True)
     accident_table["City"] = accident_table.apply(lambda x: x["City"].replace(",","'"), axis=1)
     accident_table['Date']=pd.to_datetime(accident_table['Date'])
     for i in list_nafill :
         accident_table[i].fillna("Unknow", inplace = True)
+    accident_table.to_csv(accident_table_path, index=False)
     print(f"Output to {accident_table_path}")
 
 with DAG(
@@ -43,7 +44,7 @@ with DAG(
     t2 =PythonOperator(
         task_id="clean_data",
         python_callable=clean_data,
-        op_kwargs={"accident_table_path": accident_table_path ,"list_nafill":list_nafill}
+        op_kwargs={"raw_data_from_DB_path":raw_data_from_DB_path ,"accident_table_path": accident_table_path ,"list_nafill":list_nafill}
     )
 
     t3 =BashOperator(
