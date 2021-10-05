@@ -24,7 +24,7 @@ def clean_data(accident_table_path,list_nafill):
     accident_table["City"] = accident_table.apply(lambda x: x["City"].replace(",","'"), axis=1)
     accident_table['Date']=pd.to_datetime(accident_table['Date'])
     for i in list_nafill :
-        raw_table[i].fillna("Unknow", inplace = True)
+        accident_table[i].fillna("Unknow", inplace = True)
     print(f"Output to {accident_table_path}")
 
 with DAG(
@@ -61,4 +61,6 @@ with DAG(
     )                                                                                                                                 #Upload to BQ by GCSToBigQueryOperator
 
     t1 >> [t2,t3] >> t4 
+
+
 
