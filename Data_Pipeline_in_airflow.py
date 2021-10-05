@@ -19,7 +19,7 @@ def get_data_from_DB(transaction_path):
     print(f"Output to {transaction_path}")
 
 
-def transformation_data(accident_table_path):
+def clean_data(accident_table_path):
     global list_nafill
     accident_table=pd.read_csv(accident_table_path)
     accident_table.drop(['Title','Sub Industry','Company Name','Number of Punished','Financial Penalty'], axis=1, inplace=True)
@@ -29,5 +29,39 @@ def transformation_data(accident_table_path):
         raw_table[i].fillna("Unknow", inplace = True)
     print(f"Output to {accident_table_path}")
 
+with DAG(
+    "Work_Accidents_in_China",
+    start_date=days_ago(1),
+    schedule_interval=None,
+    tags=["Basic Data Pipeline"]
+) as dag:
 
+    t1 = PythonOperator(
+        task_id="get_data_from_DB",
+        python_callable=get_data_from_DB,
+        op_kwargs={"transaction_path": mysql_output_path},
+    )
+
+    t2 =PythonOperator(
+        task_id="",
+        python_callable=,
+        op_kwargs=
+    )
+
+    t3 =BashOperator(
+        task_id="",
+        bash_command=""
+    )
+
+    t4 =BashOperator(
+        task_id="",
+        bash_command=""
+    )
+
+    t5 =BashOperator(
+        task_id="",
+        bash_command=""
+    )
+
+    t1 >> [t2,t3] >> t4 >> t5
 
