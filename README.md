@@ -12,5 +12,5 @@ pymysql,pandas,Google cloud Platform(Composer,Big Query)
 5.นำCode Python ไปไว้ในfolder DAGSที่Composerได้สร้างไว้ในGoogle Cloud Storage <br />
 6.เสร็จสิ้นและตรวจสอบความสมบูรณ์
 ## Note
-* เราใช้ข้อมูลจาก
+* เราใช้ข้อมูลจาก [www.kaggle.com/jpmiller/work-accidents-in-china](https://www.kaggle.com/jpmiller/work-accidents-in-china)
 * ทำการแก้ไข[DATASET],[TABLE_NAME],[GCS_BUCKET]ก่อนCodeไปใช้
