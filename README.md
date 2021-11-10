@@ -1,4 +1,4 @@
-# Welcome to Data Pipeline on GCP (Google Cloud Platform)
+# Welcome to Data Pipeline on Google Cloud Composer (Google Cloud Platform)
 ## Description
 Data Pipeline ใน GCP นั้นเราใช้ Apache Airflow บน Composer และทำการเก็บข้อมูลไปยังData warehouse(Big Query) <br /> 
 โดยที่Data Pipelineจะทำการดึงข้อมูลจากData Base(MySQL) มาทำความสะอาดข้อมูลและแปลงข้อมูลให้เหมาะสมกับการใช้งานและเก็บข้อมูลในData warehouse(Big Query)
